@@ -1,8 +1,21 @@
 import type {Component} from 'solid-js';
+import {AccountSelection, ChannelInfo} from "./components/AccountSelection";
+import {createSignal, Show} from "solid-js";
 
 const App: Component = () => {
+    const [channelInfo, setChannelInfo] = createSignal<ChannelInfo>()
+
     return (
-        <p class="text-4xl text-green-700 text-center py-20">Hello tailwind!</p>
+        <>
+            <AccountSelection setChannelInfo={setChannelInfo}/>
+            <Show when={channelInfo()}>
+                <p>
+                    Channel title: {channelInfo().channelTitle}
+                    <br/>
+                    Channel ID: {channelInfo().channelId}
+                </p>
+            </Show>
+        </>
     );
 };
 

@@ -7,7 +7,7 @@ export interface SetupSettings {
 }
 
 export interface ISetupComponentProps {
-    setSetupSettings: Setter<SetupSettings>
+    onStart: (settings: SetupSettings) => void
 }
 
 export function SetupComponent(props: ISetupComponentProps) {
@@ -17,7 +17,7 @@ export function SetupComponent(props: ISetupComponentProps) {
     })
 
     const onNextClick = () => {
-        props.setSetupSettings({
+        props.onStart({
             chatId: liveInfo().chatId
         })
     }

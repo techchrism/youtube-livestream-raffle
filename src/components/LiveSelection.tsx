@@ -1,6 +1,5 @@
 import {createSignal, Setter, Show} from "solid-js";
-import {youtubeAPIKey} from "../apiConstants";
-import {Thumbnail, VideoSnippetResponse} from "../youtubeApiTypes";
+import {Thumbnail, videoList} from "../youtubeApi";
 
 // From https://stackoverflow.com/a/27728417
 const youtubeRegex = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]+).*/
@@ -31,14 +30,7 @@ export function LiveSelection(props: ILiveSelectionProps) {
                 throw new Error('Invalid YouTube video url')
             }
 
-            const apiURL = new URL('https://www.googleapis.com/youtube/v3/videos')
-            apiURL.search = new URLSearchParams({
-                part: 'snippet, liveStreamingDetails',
-                id: idResult[1],
-                key: youtubeAPIKey
-            }).toString()
-            const response = (await (await fetch(apiURL)).json()) as VideoSnippetResponse
-
+            const response = await videoList(idResult[1])
             if(response.items.length === 0) {
                 throw new Error('Could not find livestream')
             }
@@ -74,7 +66,6 @@ export function LiveSelection(props: ILiveSelectionProps) {
                     </div>
                 </Show>
             </div>
-
         </>
     )
 }

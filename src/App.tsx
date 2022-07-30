@@ -1,6 +1,7 @@
 import type {Component} from 'solid-js';
 import {createSignal, Match, Switch} from "solid-js";
 import {SetupComponent, SetupSettings} from "./components/SetupComponent";
+import {ChatSelection} from "./components/ChatSelection";
 
 type AppStage = 'setup' | 'chat'
 
@@ -18,6 +19,9 @@ const App: Component = () => {
             <Switch>
                 <Match when={stage() === 'setup'}>
                     <SetupComponent onStart={onStart}/>
+                </Match>
+                <Match when={stage() === 'chat'}>
+                    <ChatSelection settings={setupSettings()}/>
                 </Match>
             </Switch>
         </>

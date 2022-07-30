@@ -43,7 +43,7 @@ export function LiveSelection(props: ILiveSelectionProps) {
             props.setLiveInfo({
                 title: video.snippet.title,
                 thumbnail: video.snippet.thumbnails.default,
-                chatId: video.liveStreamingDetails.activeChatId
+                chatId: video.liveStreamingDetails.activeLiveChatId
             })
         } catch(e) {
             setError(e)

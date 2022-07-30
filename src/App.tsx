@@ -1,18 +1,16 @@
 import type {Component} from 'solid-js';
-import {AccountSelection, ChannelInfo} from "./components/AccountSelection";
 import {createSignal, Show} from "solid-js";
+import {LiveInfo, LiveSelection} from "./components/LiveSelection";
 
 const App: Component = () => {
-    const [channelInfo, setChannelInfo] = createSignal<ChannelInfo>()
+    const [liveInfo, setLiveInfo] = createSignal<LiveInfo>()
 
     return (
         <>
-            <AccountSelection setChannelInfo={setChannelInfo}/>
-            <Show when={channelInfo()}>
+            <LiveSelection setLiveInfo={setLiveInfo}/>
+            <Show when={liveInfo()}>
                 <p>
-                    Channel title: {channelInfo().channelTitle}
-                    <br/>
-                    Channel ID: {channelInfo().channelId}
+                    {liveInfo().title}
                 </p>
             </Show>
         </>

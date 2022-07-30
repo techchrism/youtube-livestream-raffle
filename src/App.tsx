@@ -1,18 +1,13 @@
 import type {Component} from 'solid-js';
-import {createSignal, Show} from "solid-js";
-import {LiveInfo, LiveSelection} from "./components/LiveSelection";
+import {createSignal} from "solid-js";
+import {SetupComponent, SetupSettings} from "./components/SetupComponent";
 
 const App: Component = () => {
-    const [liveInfo, setLiveInfo] = createSignal<LiveInfo>()
+    const [setupSettings, setSetupSettings] = createSignal<SetupSettings>()
 
     return (
         <>
-            <LiveSelection setLiveInfo={setLiveInfo}/>
-            <Show when={liveInfo()}>
-                <p>
-                    {liveInfo().title}
-                </p>
-            </Show>
+            <SetupComponent setSetupSettings={setSetupSettings}/>
         </>
     );
 };

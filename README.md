@@ -1,3 +1,7 @@
+# [YouTube Livestream Raffle](https://techchrism.github.io/youtube-livestream-raffle/)
+
+A simple way to run raffles from YouTube livestream chat
+
 ## Usage
 
 Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.

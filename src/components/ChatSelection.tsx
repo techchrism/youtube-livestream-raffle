@@ -35,9 +35,9 @@ export function ChatSelection(props: IChatSelectionProps) {
         })).filter((channel, index, self) => self.findIndex(ch => ch.id === channel.id) === index)
     })
 
-    /*onMount(() => {
+    onMount(() => {
         chatProvider.start()
-    })*/
+    })
 
     onCleanup(() => {
         chatProvider.stop()
@@ -60,7 +60,6 @@ export function ChatSelection(props: IChatSelectionProps) {
         <>
             <div class="fixed m-3 w-full">
                 <div class="flex flex-row items-center justify-center gap-x-2">
-                    <button class="btn btn-success" onClick={() => chatProvider.start(true)}>Single</button>
                     <Show when={stopped()} fallback={(
                         <button class="btn btn-error" onClick={onStopClick}>Stop</button>
                     )}>

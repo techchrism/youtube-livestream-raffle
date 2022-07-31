@@ -24,7 +24,7 @@ export function SetupComponent(props: ISetupComponentProps) {
 
     return (
         <>
-            <div class="flex flex-col items-center gap-4">
+            <div class="flex flex-col items-center gap-4 m-2">
                 <div class="text-center">
                     <h2>Instructions:</h2>
                     <ol class="list-decimal text-left">

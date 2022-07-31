@@ -173,7 +173,7 @@ export function Raffle(props: IRaffleProps) {
                                 <h3 class="font-bold text-lg">
                                     Congratulations {winner().name}!
                                 </h3>
-                                <img class="w-16" alt="profile picture" src={winner().profilePicture}/>
+                                {winner().image}
                             </div>
                         </Show>
                         <div class="modal-action">

@@ -1,17 +1,24 @@
 import type {Component} from 'solid-js';
 import {createSignal, Match, Switch} from "solid-js";
 import {SetupComponent, SetupSettings} from "./components/SetupComponent";
-import {ChatSelection} from "./components/ChatSelection";
+import {ChatSelection, SelectedChannel} from "./components/ChatSelection";
+import {Raffle} from "./components/Raffle";
 
-type AppStage = 'setup' | 'chat'
+type AppStage = 'setup' | 'chat' | 'raffle'
 
 const App: Component = () => {
     const [setupSettings, setSetupSettings] = createSignal<SetupSettings>()
+    const [selectedChannels, setSelectedChannels] = createSignal<SelectedChannel[]>([])
     const [stage, setStage] = createSignal<AppStage>('setup')
 
     const onStart = (settings: SetupSettings) => {
         setSetupSettings(settings)
         setStage('chat')
+    }
+
+    const onSelectFinish = (selected: SelectedChannel[]) => {
+        setSelectedChannels(selected)
+        setStage('raffle')
     }
 
     return (
@@ -21,7 +28,10 @@ const App: Component = () => {
                     <SetupComponent onStart={onStart}/>
                 </Match>
                 <Match when={stage() === 'chat'}>
-                    <ChatSelection settings={setupSettings()}/>
+                    <ChatSelection settings={setupSettings()} onNext={onSelectFinish}/>
+                </Match>
+                <Match when={stage() === 'raffle'}>
+                    <Raffle initialSelected={selectedChannels()}/>
                 </Match>
             </Switch>
         </>

@@ -1,11 +1,7 @@
 import {SetupSettings} from "./SetupComponent";
 import {LiveChat, LivestreamChatProvider} from "../youtubeApi";
-import {Accessor, createMemo, createSignal, For, onCleanup, onMount} from "solid-js";
+import {Accessor, createMemo, createSignal, For, onCleanup, onMount, Show} from "solid-js";
 import {ChatMessage} from "./ChatMessage";
-
-export interface IChatSelectionProps {
-    settings: SetupSettings
-}
 
 export interface SelectedChannel {
     id: string
@@ -15,6 +11,11 @@ export interface SelectedChannel {
 
 interface SelectableChat extends LiveChat {
     selected: boolean
+}
+
+export interface IChatSelectionProps {
+    settings: SetupSettings
+    onNext: (selected: SelectedChannel[]) => void
 }
 
 export function ChatSelection(props: IChatSelectionProps) {
@@ -48,6 +49,11 @@ export function ChatSelection(props: IChatSelectionProps) {
 
     const onStopClick = () => {
         setStopped(stopped => !stopped)
+        chatProvider.stop()
+    }
+
+    const onNextClick = () => {
+        props.onNext(selectedChannels())
     }
 
     return (
@@ -55,7 +61,12 @@ export function ChatSelection(props: IChatSelectionProps) {
             <div class="fixed m-3 w-full">
                 <div class="flex flex-row items-center justify-center gap-x-2">
                     <button class="btn btn-success" onClick={() => chatProvider.start(true)}>Single</button>
-                    <button class="btn btn-error" onClick={onStopClick}>Stop</button>
+                    <Show when={stopped()} fallback={(
+                        <button class="btn btn-error" onClick={onStopClick}>Stop</button>
+                    )}>
+                        <button class="btn btn-success" onClick={onNextClick}>Next</button>
+                    </Show>
+
                     <div class="badge badge-lg badge-info">{chat().length} Messages</div>
                     <div class="badge badge-lg badge-info">{selectedChannels().length} Selected Channels</div>
                 </div>

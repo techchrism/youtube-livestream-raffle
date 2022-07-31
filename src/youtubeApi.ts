@@ -107,7 +107,12 @@ export class LivestreamChatProvider {
         const data = (await (await fetch(apiURL)).json()) as ChatMessagesResponse
 
         if(this.active) {
-            this.onChatBatch(data.items)
+            if(token) {
+                this.onChatBatch(data.items)
+            } else {
+                this.onChatBatch(data.items.slice(-5))
+            }
+
             if(!single) {
                 this.nextPollTimeout = setTimeout(() => {
                     this.poll(data.nextPageToken)

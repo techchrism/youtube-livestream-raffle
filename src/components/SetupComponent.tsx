@@ -35,6 +35,9 @@ export function SetupComponent(props: ISetupComponentProps) {
                         <li>Click "next" and tap to start the raffle!</li>
                     </ol>
                 </div>
+                <div>
+                    Source code: <a class="link" href="https://github.com/techchrism/youtube-livestream-raffle">https://github.com/techchrism/youtube-livestream-raffle</a>
+                </div>
                 <LiveSelection setLiveInfo={setLiveInfo}/>
                 <div>
                     <span>Selected livestream: </span>

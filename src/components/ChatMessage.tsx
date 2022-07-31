@@ -23,7 +23,7 @@ export function ChatMessage(props: IChatMessageProps) {
                         <input type="checkbox" class="checkbox" checked={mergedProps.checked}/>
                     </Show>
                     <div class="overflow-clip rounded-full min-w-max min-h-max">
-                        <img src={props.message.authorDetails.profileImageUrl} class="h-6 w-6" alt="profile picture"/>
+                        <img src={props.message.authorDetails.profileImageUrl} class="h-6 w-6" alt="profile picture" referrerpolicy="no-referrer"/>
                     </div>
                     <div class="text-neutral-content">
                         {props.message.authorDetails.displayName}

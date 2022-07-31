@@ -25,6 +25,16 @@ export function SetupComponent(props: ISetupComponentProps) {
     return (
         <>
             <div class="flex flex-col items-center gap-4">
+                <div class="text-center">
+                    <h2>Instructions:</h2>
+                    <ol class="list-decimal text-left">
+                        <li>Enter the URL for the livestream and hit "check" to verify</li>
+                        <li>Click "start" to begin watching chat</li>
+                        <li>Once you've decided enough messages have been received, click "stop"</li>
+                        <li>Select the messages you want to be entered (don't worry about duplicates)</li>
+                        <li>Click "next" and tap to start the raffle!</li>
+                    </ol>
+                </div>
                 <LiveSelection setLiveInfo={setLiveInfo}/>
                 <div>
                     <span>Selected livestream: </span>

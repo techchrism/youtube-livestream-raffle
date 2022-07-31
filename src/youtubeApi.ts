@@ -27,7 +27,7 @@ export interface VideoSnippetResponse {
 // Base64 the key to prevent bots? Idk.
 // This key will have domain restrictions
 // I'm honestly still not sure if it's even safe to include in source files, but I really don't want to make a proxy
-const youtubeAPIKey = atob('QUl6YVN5RFBRdi16NDQ4WnRvSU1lWmFEblpFSU8zaFN5bnBPejhV')
+const youtubeAPIKey = atob('QUl6YVN5RGZKWnNWV0g5SV9fMURjQndUZ0x3Z3lXTjJRTVlscUxN')
 
 export async function videoList(id: string): Promise<VideoSnippetResponse> {
     const apiURL = new URL('https://www.googleapis.com/youtube/v3/videos')

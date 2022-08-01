@@ -1,5 +1,6 @@
 import {SelectedChannel} from "./ChatSelection";
 import {createSignal, onCleanup, onMount, Show} from "solid-js";
+import {ChannelList} from "./ChannelList";
 
 // From https://stackoverflow.com/a/12646864
 function shuffleArray(array) {
@@ -167,24 +168,25 @@ export function Raffle(props: IRaffleProps) {
                     </Show>
                 </h2>
 
-                <input type="checkbox" id="winner-modal" class="modal-toggle" ref={winnerModalTextbox}/>
-                <div class="modal">
-                    <div class="modal-box">
-                        <Show when={winner()}>
-                            <div class="flex flex-col items-center">
-                                <h3 class="font-bold text-lg">
-                                    Congratulations {winner().name}!
-                                </h3>
-                                {winner().image}
-                            </div>
-                        </Show>
-                        <div class="modal-action">
-                            <label for="winner-modal" class="btn">Yay!</label>
-                        </div>
-                    </div>
-                </div>
                 <div class="flex-grow">
                     <canvas ref={canvas} class="w-full h-full" onClick={onWheelClick}/>
+                </div>
+            </div>
+
+            <input type="checkbox" id="winner-modal" class="modal-toggle" ref={winnerModalTextbox}/>
+            <div class="modal">
+                <div class="modal-box">
+                    <Show when={winner()}>
+                        <div class="flex flex-col items-center">
+                            <h3 class="font-bold text-lg">
+                                Congratulations {winner().name}!
+                            </h3>
+                            {winner().image}
+                        </div>
+                    </Show>
+                    <div class="modal-action">
+                        <label for="winner-modal" class="btn">Yay!</label>
+                    </div>
                 </div>
             </div>
         </>

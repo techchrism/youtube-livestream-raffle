@@ -107,13 +107,15 @@ export function Raffle(props: IRaffleProps) {
 
             // Profile picture
             const imageSize = (r / 5) - (options.length / 2)
-            ctx.save()
-            ctx.translate((r - 5) + (imageSize * -1), imageSize / -2)
-            ctx.beginPath()
-            ctx.arc(imageSize / 2, imageSize / 2, imageSize / 2, 2 * Math.PI, 0)
-            ctx.clip()
-            ctx.drawImage(option.image, 0, 0, imageSize, imageSize)
-            ctx.restore()
+            if(option.image.complete && option.image.naturalWidth !== 0) {
+                ctx.save()
+                ctx.translate((r - 5) + (imageSize * -1), imageSize / -2)
+                ctx.beginPath()
+                ctx.arc(imageSize / 2, imageSize / 2, imageSize / 2, 2 * Math.PI, 0)
+                ctx.clip()
+                ctx.drawImage(option.image, 0, 0, imageSize, imageSize)
+                ctx.restore()
+            }
 
 
             // Username text

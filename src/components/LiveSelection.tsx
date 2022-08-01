@@ -55,7 +55,7 @@ export function LiveSelection(props: ILiveSelectionProps) {
         <>
             <div class="text-center">
                 <label for="video-selection-url" class="label-text">Livestream URL</label><br/>
-                <input type="url" id="video-selection-url" placeholder="Livestream URL" class="input" ref={urlInput}/>
+                <input type="url" id="video-selection-url" placeholder="Livestream URL" class="input input-bordered" ref={urlInput}/>
                 <button class="btn btn-primary mx-2" classList={{loading: loading()}} onClick={checkVideo}>
                     Check
                 </button>

@@ -53,6 +53,7 @@ export function ChatSelection(props: IChatSelectionProps) {
     }
 
     const onNextClick = () => {
+        localStorage.setItem('previous', JSON.stringify(selectedChannels()))
         props.onNext(selectedChannels())
     }
 

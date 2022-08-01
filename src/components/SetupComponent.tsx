@@ -8,6 +8,7 @@ export interface SetupSettings {
 
 export interface ISetupComponentProps {
     onStart: (settings: SetupSettings) => void
+    loadPrevious?: () => void
 }
 
 export function SetupComponent(props: ISetupComponentProps) {
@@ -20,6 +21,10 @@ export function SetupComponent(props: ISetupComponentProps) {
         props.onStart({
             chatId: liveInfo().chatId
         })
+    }
+
+    const hasPrevious = () => {
+        return (localStorage.getItem('previous') !== null)
     }
 
     return (
@@ -48,6 +53,9 @@ export function SetupComponent(props: ISetupComponentProps) {
                 <button class="btn btn-success" classList={{'btn-disabled': !setupReady()}} onClick={onNextClick}>
                     Start
                 </button>
+                <Show when={hasPrevious() && props.loadPrevious !== undefined}>
+                    <button class="btn btn-primary mx-2" onClick={props.loadPrevious}>Load Previous</button>
+                </Show>
             </div>
 
         </>

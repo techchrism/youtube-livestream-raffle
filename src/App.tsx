@@ -21,11 +21,16 @@ const App: Component = () => {
         setStage('raffle')
     }
 
+    const loadPrevious = () => {
+        setSelectedChannels(JSON.parse(localStorage.getItem('previous')))
+        setStage('raffle')
+    }
+
     return (
         <>
             <Switch>
                 <Match when={stage() === 'setup'}>
-                    <SetupComponent onStart={onStart}/>
+                    <SetupComponent onStart={onStart} loadPrevious={loadPrevious}/>
                 </Match>
                 <Match when={stage() === 'chat'}>
                     <ChatSelection settings={setupSettings()} onNext={onSelectFinish}/>

@@ -15,7 +15,6 @@ export interface ILiveSelectionProps {
 }
 
 export function LiveSelection(props: ILiveSelectionProps) {
-    const [videoURL, setVideoURL] = createSignal<string>()
     const [loading, setLoading] = createSignal(false)
     const [error, setError] = createSignal(null)
     let urlInput: HTMLInputElement
